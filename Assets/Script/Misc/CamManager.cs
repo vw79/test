@@ -5,6 +5,8 @@ using UnityEngine;
 public class CamManager : MonoBehaviour
 {
     public GameObject cam1, cam2, cam3;
+    public Health health;
+    private bool hasDied;
 
     void Start()
     {
@@ -15,23 +17,48 @@ public class CamManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (!health.isDead)
         {
-            cam1.SetActive(true);
-            cam2.SetActive(false);
-            cam3.SetActive(false);
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                cam1.SetActive(true);
+                cam2.SetActive(false);
+                cam3.SetActive(false);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                cam1.SetActive(false);
+                cam2.SetActive(true);
+                cam3.SetActive(false);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                cam1.SetActive(false);
+                cam2.SetActive(false);
+                cam3.SetActive(true);
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else
         {
-            cam1.SetActive(false);
-            cam2.SetActive(true);
-            cam3.SetActive(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            cam1.SetActive(false);
-            cam2.SetActive(false);
-            cam3.SetActive(true);
+            if (!hasDied)
+            {
+                cam1.SetActive(true);
+
+                hasDied = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                cam1.SetActive(true);
+                cam2.SetActive(false);
+                cam3.SetActive(false);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                cam1.SetActive(false);
+                cam2.SetActive(false);
+                cam3.SetActive(true);
+            }
         }
     }
 }

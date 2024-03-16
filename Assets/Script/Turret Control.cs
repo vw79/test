@@ -36,7 +36,7 @@ public class TurretControl : MonoBehaviour
         {
             turretTransform.rotation = Quaternion.Slerp(turretTransform.rotation, originalRotation, Time.deltaTime * 100);
         }
-        else if (Input.GetKeyDown(KeyCode.Space)) 
+        else if (Input.GetKeyDown(KeyCode.Space))
         {
             bool canIntercept = CalculateInterceptPosition(selfPosition, selfVelocity, targetPosition, targetVelocity, bulletSpeed, out Vector3 interceptPosition);
             if (canIntercept)

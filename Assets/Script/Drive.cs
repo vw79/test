@@ -25,6 +25,7 @@ public class Drive : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private TankColor tankColor;
     [SerializeField] private TextMeshProUGUI speedDisplay;
+    [SerializeField] private Animator wheelAnimator;
     private bool reachedTarget;
 
     private void Update()
@@ -73,6 +74,8 @@ public class Drive : MonoBehaviour
                     }
                     break;
             }
+
+            AdjustAnimationSpeed();
         }
     }
 
@@ -98,6 +101,12 @@ public class Drive : MonoBehaviour
     public Vector3 CurrentSpeed
     {
         get { return transform.forward * currentSpeed; }
+    }
+
+    private void AdjustAnimationSpeed()
+    {
+        float animationSpeed = currentSpeed / maxSpeed;
+        wheelAnimator.speed = animationSpeed;
     }
 }
 

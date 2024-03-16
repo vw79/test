@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     public VisualEffect explosionVFX;
     private Material sharedMaterial;
     public bool isDead;
+    public BoxCollider boxCollider;
 
     void Start()
     {
@@ -40,6 +41,7 @@ public class Health : MonoBehaviour
             {
                 StartCoroutine(AdjustBurnOverTime(2.1f, 0.3f, 1.1f, 3));
             }
+            boxCollider.enabled = false;
         }
     }
 
